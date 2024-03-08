@@ -1,4 +1,4 @@
-export default function login_validate(values) {
+export function login_validate(values) {
     const errors = {};
 
     // validation for email addresses
