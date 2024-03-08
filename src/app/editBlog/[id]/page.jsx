@@ -1,34 +1,46 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import EditBlogForm from "../../../components/EditBlogForm";
 import Navbar from "@/components/Navbar";
 
-const getBlogById = async (id) => {
-    try {
-        const res = await fetch(`http://localhost:3000/api/blogs/${id}`, {
-            cache: "no-store",
-        });
-
-        if (!res.ok) {
-            throw new Error("Failed to fetch blog");
-        }
-
-        return res.json();
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-export default async function EditTodo({ params }) {
+const EditTodo = ({ params }) => {
     const { id } = params;
-    const { blog } = await getBlogById(id);
-    const { title, thumbnail, content } = await blog;
+    const [blog, setBlog] = useState(null);
+
+    useEffect(() => {
+        const fetchBlog = async () => {
+            try {
+                const res = await fetch(`http://localhost:3000/api/blogs/${id}`, {
+                    cache: "no-store",
+                });
+                if (!res.ok) {
+                    throw new Error("Failed to fetch blog");
+                }
+                const data = await res.json();
+                setBlog(data.blog);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        fetchBlog();
+    }, [id]);
+
+    if (!blog) {
+        return <div>Loading...</div>;
+    }
+
+    const { title, thumbnail, content } = blog;
+
     return (
-        <div className="mx-auto px-[100px] py-5">
-            <div>
-                <Navbar />
-                <div className="mt-4">
-                    <EditBlogForm id={id} title={title} thumbnail={thumbnail} content={content} />
-                </div>
+        <div className="bg-[#995959] h-screen">
+            <Navbar />
+            <div className="mt-4  mx-12 pt-4">
+                <EditBlogForm id={id} title={title} thumbnail={thumbnail} content={content} />
             </div>
         </div>
     );
-}
+};
+
+export default EditTodo;

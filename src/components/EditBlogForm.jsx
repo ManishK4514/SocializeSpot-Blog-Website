@@ -1,13 +1,34 @@
 "use client"
 
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useRouter } from "next/navigation";
 import { Editor } from '@tinymce/tinymce-react';
+import { getSession, useSession, signOut } from "next-auth/react";
+import { redirect } from 'next/navigation';
 
 export default function EditBlogForm({ id, title, thumbnail, content }) {
+    const { data: session } = useSession();
+    
     const [newTitle, setNewTitle] = useState(title);
-    const [newThumbnail, setNewThumbnail] = useState(null);
+    const [newThumbnail, setNewThumbnail] = useState(thumbnail);
     const editorRef = useRef(null);
+
+    const [isRedirecting, setIsRedirecting] = useState(false);
+
+    useEffect(() => {
+      let timeoutId = setTimeout(() => {
+        if (!session) {
+          setIsRedirecting(true);
+        }
+      }, 1000); 
+
+      return () => clearTimeout(timeoutId);
+    }, [session]);
+
+    if (isRedirecting) {
+      redirect("/login");
+      return null;
+    }
 
     const handleThumbnailChange = (e) => {
         const file = e.target.files[0];
@@ -34,7 +55,7 @@ export default function EditBlogForm({ id, title, thumbnail, content }) {
                 headers: {
                     "content-type": "application/json",
                 },
-                body: JSON.stringify({ newTitle, newThumbnail, newContent : editorRef.current.getContent() }),
+                body: JSON.stringify({ email: session.user.email, newTitle, newThumbnail, newContent : editorRef.current.getContent() }),
             });
 
             if (!res.ok) {
@@ -58,7 +79,7 @@ export default function EditBlogForm({ id, title, thumbnail, content }) {
                 placeholder="Todo Title"
             />
 
-            <input type="file" accept="image/*" onChange={handleThumbnailChange} className="border border-slate-500 px-8 py-2" />
+            <input type="file" accept="image/*" onChange={handleThumbnailChange} className="bg-white border border-slate-500 px-8 py-2" />
 
             <Editor
                 apiKey='g5oq0crxkw9oh4ad42r2c6e5yguwsg8ko0dass88oxi92rrx'

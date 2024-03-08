@@ -7,26 +7,27 @@ import { getSession, useSession, signOut } from "next-auth/react";
 import { redirect } from "next/navigation";
 import BlogList from "@/components/BlogList";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   const { data: session } = useSession();
 
-  // const [isRedirecting, setIsRedirecting] = useState(false);
+  const [isRedirecting, setIsRedirecting] = useState(false);
 
-  // useEffect(() => {
-  //   let timeoutId = setTimeout(() => {
-  //     if (!session) {
-  //       setIsRedirecting(true);
-  //     }
-  //   }, 1000); 
+  useEffect(() => {
+    let timeoutId = setTimeout(() => {
+      if (!session) {
+        setIsRedirecting(true);
+      }
+    }, 1000);
 
-  //   return () => clearTimeout(timeoutId);
-  // }, [session]);
+    return () => clearTimeout(timeoutId);
+  }, [session]);
 
-  // if (isRedirecting) {
-  //   redirect("/login");
-  //   return null;
-  // }
+  if (isRedirecting) {
+    redirect("/login");
+    return null;
+  }
 
   // function handleSignOut() {
   //   signOut();
@@ -39,12 +40,10 @@ export default function Home() {
   // )
 
   return (
-    <div className="mx-auto px-[100px] py-5">
-      <div>
-        <Navbar />
-        <div className="mt-4">
-          <BlogList />
-        </div>
+    <div className="bg-[#995959] h-screen">
+      <Navbar />
+      <div className="mt-4 px-12 pt-4">
+        <BlogList />
       </div>
     </div>
   )
