@@ -1,15 +1,20 @@
 import Link from "next/link";
 import { HiOutlineLogout } from "react-icons/hi";
-import { useState } from "react";
-import { usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
+import { usePathname } from "next/router";
 import { useSession, signOut } from "next-auth/react";
-import { useEffect } from "react";
-import { redirect } from "next/navigation";
+import { redirect } from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
     const { data: session } = useSession();
+    const router = useRouter();
+    const pathname = router.pathname;
 
     const [isRedirecting, setIsRedirecting] = useState(false);
+    const [isHomePage, setIsHomePage] = useState('/' === pathname);
+    const [isMyBlogPage, setIsMyBlogPage] = useState('/myBlogs' === pathname);
+    const [isWriteBlogPage, setIsWriteBlogPage] = useState('/addBlog' === pathname);
 
     useEffect(() => {
         let timeoutId = setTimeout(() => {
@@ -25,12 +30,6 @@ export default function Navbar() {
         redirect("/login");
         return null;
     }
-
-    const pathname = usePathname()
-
-    const [isHomePage, setIsHomePage] = useState('/' === pathname);
-    const [isMyBlogPage, setIsMyBlogPage] = useState('/myBlogs' === pathname);
-    const [isWriteBlogPage, setIsWriteBlogPage] = useState('/addBlog' === pathname);
 
     return (
         <nav className="bg-white border-gray-200 dark:bg-gray-900">

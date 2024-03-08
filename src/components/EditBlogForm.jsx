@@ -1,14 +1,13 @@
-"use client"
-
 import React, { useRef, useState, useEffect } from 'react';
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 import { Editor } from '@tinymce/tinymce-react';
 import { getSession, useSession, signOut } from "next-auth/react";
-import { redirect } from 'next/navigation';
+import { redirect } from 'next/router';
 
 export default function EditBlogForm({ id, title, thumbnail, content }) {
     const { data: session } = useSession();
-    
+    const router = useRouter();
+
     const [newTitle, setNewTitle] = useState(title);
     const [newThumbnail, setNewThumbnail] = useState(thumbnail);
     const editorRef = useRef(null);
@@ -26,7 +25,7 @@ export default function EditBlogForm({ id, title, thumbnail, content }) {
     }, [session]);
 
     if (isRedirecting) {
-      redirect("/login");
+      router.push("/login");
       return null;
     }
 
@@ -42,9 +41,6 @@ export default function EditBlogForm({ id, title, thumbnail, content }) {
             reader.readAsDataURL(file);
         }
     };
-
-
-    const router = useRouter();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -74,7 +70,7 @@ export default function EditBlogForm({ id, title, thumbnail, content }) {
             <input
                 onChange={(e) => { setNewTitle(e.target.value) }}
                 value={newTitle}
-                input className="border border-slate-500 px-8 py-2"
+                className="border border-slate-500 px-8 py-2"
                 type="text"
                 placeholder="Todo Title"
             />

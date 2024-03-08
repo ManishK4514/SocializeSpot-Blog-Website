@@ -80,7 +80,7 @@ function User({ session, handleSignOut }) {
       </div>
 
       <div className="flex justify-center">
-        <button onClick={handleSignOut} className="mt-5 px-10 py-1 rounded-sm bg-indigo-500 "> Sign Out</button> // bg-gray-50
+        <button onClick={handleSignOut} className="mt-5 px-10 py-1 rounded-sm bg-indigo-500 "> Sign Out</button>
       </div>
 
       <div className="flex justify-center">

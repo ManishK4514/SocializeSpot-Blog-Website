@@ -34,7 +34,7 @@ const Login = () => {
       callbackUrl: "/"
     })
 
-    if(status.ok) router.push(status.url);
+    if (status.ok) router.push(status.url);
   }
 
   // Google Handler function
@@ -86,11 +86,12 @@ const Login = () => {
       </form>
 
       {/* buttom */}
-      <p className='text-center text-gray-400'>
-        don't have an account yet? <Link className='text-blue-500' href={'/register'}>
+      <p className='text-gray-400'>
+        don&apos;t have an account yet? <Link className='text-blue-500' href={'/register'}>
           Sign Up
         </Link>
       </p>
+
     </section>
   )
 }
