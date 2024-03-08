@@ -5,7 +5,7 @@ import { PiNotePencilBold } from "react-icons/pi";
 
 const getBlogs = async () => {
     try {
-        const res = await fetch(`http://localhost:3000/api/blogs`, {
+        const res = await fetch(`https://socializespot.vercel.app/api/blogs`, {
             cache: "no-store",
         });
 

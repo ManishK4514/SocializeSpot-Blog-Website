@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const getBlogs = async (id) => {
   try {
-    const res = await fetch(`http://localhost:3000/api/myblogs/${id}`, {
+    const res = await fetch(`https://socializespot.vercel.app/api/myblogs/${id}`, {
       cache: "no-store",
     });
 

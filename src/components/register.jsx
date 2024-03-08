@@ -31,7 +31,7 @@ const Register = () => {
       body: JSON.stringify(values)
     }
 
-    const signupRes = await fetch('http://localhost:3000/api/signup', options);
+    const signupRes = await fetch('https://socializespot.vercel.app/api/signup', options);
     const user = await signupRes.json();
     
     if(user) router.push('/login');

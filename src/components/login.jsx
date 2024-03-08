@@ -39,12 +39,12 @@ const Login = () => {
 
   // Google Handler function
   async function handleGoogleSignin() {
-    signIn('google', { callbackUrl: 'http://localhost:3000' })
+    signIn('google', { callbackUrl: 'https://socializespot.vercel.app' })
   }
 
   // Github Handler function
   async function handleGithubSignin() {
-    signIn('github', { callbackUrl: 'http://localhost:3000' })
+    signIn('github', { callbackUrl: 'https://socializespot.vercel.app' })
   }
 
   return (

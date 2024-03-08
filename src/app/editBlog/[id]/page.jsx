@@ -11,7 +11,7 @@ const EditTodo = ({ params }) => {
     useEffect(() => {
         const fetchBlog = async () => {
             try {
-                const res = await fetch(`http://localhost:3000/api/blogs/${id}`, {
+                const res = await fetch(`https://socializespot.vercel.app/api/blogs/${id}`, {
                     cache: "no-store",
                 });
                 if (!res.ok) {
