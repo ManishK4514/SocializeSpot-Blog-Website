@@ -12,22 +12,11 @@ export default function EditBlogForm({ id, title, thumbnail, content }) {
     const [newThumbnail, setNewThumbnail] = useState(thumbnail);
     const editorRef = useRef(null);
 
-    const [isRedirecting, setIsRedirecting] = useState(false);
-
     useEffect(() => {
-      let timeoutId = setTimeout(() => {
         if (!session) {
-          setIsRedirecting(true);
+            redirect("/login");
         }
-      }, 1000); 
-
-      return () => clearTimeout(timeoutId);
     }, [session]);
-
-    if (isRedirecting) {
-      router.push("/login");
-      return null;
-    }
 
     const handleThumbnailChange = (e) => {
         const file = e.target.files[0];
@@ -51,7 +40,7 @@ export default function EditBlogForm({ id, title, thumbnail, content }) {
                 headers: {
                     "content-type": "application/json",
                 },
-                body: JSON.stringify({ email: session.user.email, newTitle, newThumbnail, newContent : editorRef.current.getContent() }),
+                body: JSON.stringify({ email: session.user.email, newTitle, newThumbnail, newContent: editorRef.current.getContent() }),
             });
 
             if (!res.ok) {
@@ -80,7 +69,7 @@ export default function EditBlogForm({ id, title, thumbnail, content }) {
             <Editor
                 apiKey='g5oq0crxkw9oh4ad42r2c6e5yguwsg8ko0dass88oxi92rrx'
                 onInit={(evt, editor) => editorRef.current = editor}
-                initialValue={content} 
+                initialValue={content}
                 init={{
                     height: 500,
                     menubar: false,

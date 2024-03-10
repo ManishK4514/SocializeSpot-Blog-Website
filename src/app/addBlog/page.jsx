@@ -14,22 +14,11 @@ export default function AddTodo() {
     const [thumbnail, setThumbnail] = useState(null);
     const router = useRouter();
 
-    const [isRedirecting, setIsRedirecting] = useState(false);
-
     useEffect(() => {
-        let timeoutId = setTimeout(() => {
-            if (!session) {
-                setIsRedirecting(true);
-            }
-        }, 1000);
-
-        return () => clearTimeout(timeoutId);
+        if (!session) {
+            redirect("/login");
+        }
     }, [session]);
-
-    if (isRedirecting) {
-        redirect("/login");
-        return null;
-    }
 
     const handleThumbnailChange = (e) => {
         const file = e.target.files[0];

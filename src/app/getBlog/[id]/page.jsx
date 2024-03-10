@@ -24,9 +24,28 @@ const getBlogById = async (id) => {
     }
 }
 
+const getUserById = async (id) => {
+    try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user/${id}`, {
+            cache: "no-store",
+        });
+
+        if (!res.ok) {
+            throw new Error("Failed to fetch blogs");
+        }
+
+        const data = await res.json();
+
+        return data;
+    } catch (error) {
+        console.log("Error loading blogs: ", error);
+    }
+}
+
 const GetBlog = ({ params }) => {
     const { id } = params;
     const [blog, setBlog] = useState(null);
+    const [user, setUser] = useState(null);
     const [commentText, setCommentText] = useState(null);
     const router = useRouter();
     const { data: session } = useSession();
@@ -36,7 +55,15 @@ const GetBlog = ({ params }) => {
             const data = await getBlogById(id);
             setBlog(data.blog);
         };
-        fetchData();
+
+        if(!blog) fetchData();
+
+        const fetchUserData = async () => {
+            const data = await getUserById(session?.user?.email);
+            setUser(data);
+        };
+        
+        fetchUserData();
     }, [id]);
 
     if (!blog) {
@@ -54,13 +81,13 @@ const GetBlog = ({ params }) => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ username: session?.user?.name || 'Anonymous', text: commentText }),
+                body: JSON.stringify({ username: session?.user?.name || user.username || 'Anonymous', text: commentText }),
             });
 
             if (!response.ok) {
                 throw new Error("Failed to add comment");
             }
-            
+
             const updatedBlogData = await getBlogById(id);
             setBlog(updatedBlogData.blog);
             setCommentText("");

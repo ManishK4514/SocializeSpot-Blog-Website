@@ -10,22 +10,11 @@ import Navbar from "@/components/Navbar";
 export default function MyBlogs() {
   const { data: session } = useSession();
 
-  const [isRedirecting, setIsRedirecting] = useState(false);
-
   useEffect(() => {
-    let timeoutId = setTimeout(() => {
-      if (!session) {
-        setIsRedirecting(true);
-      }
-    }, 1000);
-
-    return () => clearTimeout(timeoutId);
+    if (!session) {
+      redirect("/login");
+    }
   }, [session]);
-
-  if (isRedirecting) {
-    redirect("/login");
-    return null;
-  }
 
   return (
     <div className="bg-[#995959] h-full">

@@ -12,22 +12,11 @@ import Footer from "@/components/Footer";
 export default function Home() {
   const { data: session } = useSession();
 
-  const [isRedirecting, setIsRedirecting] = useState(false);
-
   useEffect(() => {
-    let timeoutId = setTimeout(() => {
-      if (!session) {
-        setIsRedirecting(true);
-      }
-    }, 1000);
-
-    return () => clearTimeout(timeoutId);
+    if (!session) {
+      redirect("/login");
+    }
   }, [session]);
-
-  if (isRedirecting) {
-    redirect("/login");
-    return null;
-  }
 
   // function handleSignOut() {
   //   signOut();
