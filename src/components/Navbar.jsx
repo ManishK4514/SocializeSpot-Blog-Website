@@ -4,12 +4,20 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/router";
 import { useSession, signOut } from "next-auth/react";
 import { redirect } from "next/navigation";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 
 export default function Navbar() {
     const { data: session } = useSession();
-    const router = useRouter();
-    const pathname = router.pathname;
+    const [pathname, setPathname] = useState("/");
+
+    useEffect(() => {
+        const newPathname = window.location.pathname;
+        setPathname(newPathname);
+        setIsHomePage(newPathname === '/');
+        setIsMyBlogPage(newPathname === '/myBlogs');
+        setIsWriteBlogPage(newPathname === '/addBlog');
+    }, []);
+  
 
     const [isHomePage, setIsHomePage] = useState('/' === pathname);
     const [isMyBlogPage, setIsMyBlogPage] = useState('/myBlogs' === pathname);
