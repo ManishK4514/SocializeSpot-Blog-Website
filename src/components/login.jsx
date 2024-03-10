@@ -39,12 +39,12 @@ const Login = () => {
 
   // Google Handler function
   async function handleGoogleSignin() {
-    signIn('google', { callbackUrl: 'https://socializespot.vercel.app' })
+    signIn('google', { callbackUrl: process.env.NEXT_PUBLIC_BASE_URL })
   }
 
   // Github Handler function
   async function handleGithubSignin() {
-    signIn('github', { callbackUrl: 'https://socializespot.vercel.app' })
+    signIn('github', { callbackUrl: process.env.NEXT_PUBLIC_BASE_URL })
   }
 
   return (
@@ -75,12 +75,12 @@ const Login = () => {
         </div>
         <div className="input-button">
           <button onClick={handleGoogleSignin} type='button' className={styles.button_custom}>
-            Sign In with Google <Image src={google} width={20} height={20}></Image>
+            Sign In with Google <Image src={google} width={20} height={20} alt='google'></Image>
           </button>
         </div>
         <div className="input-button">
           <button onClick={handleGithubSignin} type='button' className={styles.button_custom}>
-            Sign In with Github <Image src={github} width={25} height={25}></Image>
+            Sign In with Github <Image src={github} width={25} height={25} alt='github'></Image>
           </button>
         </div>
       </form>

@@ -10,7 +10,7 @@ import { useSession } from "next-auth/react";
 
 const getBlogById = async (id) => {
     try {
-        const res = await fetch(`https://socializespot.vercel.app/api/blogs/${id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/blogs/${id}`, {
             cache: "no-store",
         });
 
@@ -46,7 +46,7 @@ const GetBlog = ({ params }) => {
     const { email, title, thumbnail, content, comments } = blog;
 
     const handleComment = async () => {
-        const url = `https://socializespot.vercel.app/api/blogs/comment/${id}`;
+        const url = `${process.env.NEXT_PUBLIC_BASE_URL}/api/blogs/comment/${id}`;
 
         try {
             const response = await fetch(url, {
@@ -79,7 +79,7 @@ const GetBlog = ({ params }) => {
                         <img className="w-full rounded-2xl" src={thumbnail} alt="" />
                         {email === session?.user?.email && <div className="absolute top-5 right-5 flex flex-col gap-2 bg-white rounded-lg p-2">
                             <RemoveBtn id={blog._id} />
-                            <Link href={`https://socializespot.vercel.app/editBlog/${blog._id}`}>
+                            <Link href={`${process.env.NEXT_PUBLIC_BASE_URL}/editBlog/${blog._id}`}>
                                 <PiNotePencilBold size={24} />
                             </Link>
                         </div>}

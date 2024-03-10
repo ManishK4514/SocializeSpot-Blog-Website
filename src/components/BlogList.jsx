@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import RemoveBtn from "./RemoveBtn";
 import Link from "next/link";
 import { PiNotePencilBold } from "react-icons/pi";
+import Image from "next/image";
 
 const getBlogs = async () => {
     try {
-        const res = await fetch(`https://socializespot.vercel.app/api/blogs`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/blogs`, {
             cache: "no-store",
         });
 
@@ -38,7 +39,13 @@ export default function BlogList() {
                 {blogs.map((blog) => (
                     <Link key={blog._id} href={`./getBlog/${blog._id}`}>
                         <div className="flex flex-col justify-evenly gap-2 w-full h-full p-5 border border-gray-300 bg-slate-100 rounded-xl">
-                            <img className="rounded-lg w-[400px] h-[200px]" src={blog.thumbnail} alt="Thumbnail" srcSet="" />
+                            <Image
+                                src={blog.thumbnail}
+                                alt="Thumbnail"
+                                width={400} 
+                                height={200} 
+                                className="rounded-lg"
+                            />
                             <hr className="border-gray-200" />
                             <p className="font-bold text-lg">{blog.title}</p>
                         </div>

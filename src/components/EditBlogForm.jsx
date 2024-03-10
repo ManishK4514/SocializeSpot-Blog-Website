@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { Editor } from '@tinymce/tinymce-react';
 import { getSession, useSession, signOut } from "next-auth/react";
 import { redirect } from 'next/router';
@@ -46,7 +46,7 @@ export default function EditBlogForm({ id, title, thumbnail, content }) {
         e.preventDefault();
 
         try {
-            const res = await fetch(`https://socializespot.vercel.app/api/blogs/${id}`, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/blogs/${id}`, {
                 method: 'PUT',
                 headers: {
                     "content-type": "application/json",

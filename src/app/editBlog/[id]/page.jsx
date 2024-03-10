@@ -11,7 +11,7 @@ const EditTodo = ({ params }) => {
     useEffect(() => {
         const fetchBlog = async () => {
             try {
-                const res = await fetch(`https://socializespot.vercel.app/api/blogs/${id}`, {
+                const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/blogs/${id}`, {
                     cache: "no-store",
                 });
                 if (!res.ok) {
