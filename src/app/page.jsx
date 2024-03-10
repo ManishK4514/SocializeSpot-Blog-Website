@@ -40,7 +40,7 @@ export default function Home() {
   // )
 
   return (
-    <div className="bg-[#995959] h-screen">
+    <div className="bg-[#995959] h-screen mb-11">
       <Navbar />
       <div className="mt-4 px-12 pt-4">
         <BlogList />

@@ -28,7 +28,7 @@ const EditTodo = ({ params }) => {
     }, [id]);
 
     if (!blog) {
-        return <div>Loading...</div>;
+        return <div className="flex justify-center items-center">Loading...</div>;
     }
 
     const { title, thumbnail, content } = blog;

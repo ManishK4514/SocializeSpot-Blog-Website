@@ -39,13 +39,15 @@ export default function BlogList() {
                 {blogs.map((blog) => (
                     <Link key={blog._id} href={`./getBlog/${blog._id}`}>
                         <div className="flex flex-col justify-evenly gap-2 w-full h-full p-5 border border-gray-300 bg-slate-100 rounded-xl">
-                            <Image
-                                src={blog.thumbnail}
-                                alt="Thumbnail"
-                                width={400} 
-                                height={200} 
-                                className="rounded-lg"
-                            />
+                            <div style={{ position: 'relative', width: '100%', height: '200px' }}>
+                                <Image
+                                    src={blog.thumbnail}
+                                    alt="Thumbnail"
+                                    layout="fill"
+                                    objectFit="cover"
+                                    className="rounded-lg"
+                                />
+                            </div>
                             <hr className="border-gray-200" />
                             <p className="font-bold text-lg">{blog.title}</p>
                         </div>

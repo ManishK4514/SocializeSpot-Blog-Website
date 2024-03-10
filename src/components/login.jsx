@@ -56,16 +56,16 @@ const Login = () => {
 
       {/* form */}
       <form className='flex flex-col gap-5' onSubmit={formik.handleSubmit}>
-        <div className={styles.input_group}>
+        <div className={`${styles.input_group} ${formik.errors.email && formik.touched.email ? 'border-rose-600' : ''}`}>
           <input className={styles.input_text} type="email" name='email' placeholder='Email' {...formik.getFieldProps('email')} />
           <span className='icon flex items-center px-4'><HiAtSymbol size={25} /></span>
         </div>
-        {formik.errors.email && formik.touched.email ? <span className='text-rose-500' >{formik.errors.email}</span> : <></>}
-        <div className={styles.input_group}>
+        {/* {formik.errors.email && formik.touched.email ? <span className='text-rose-500' >{formik.errors.email}</span> : <></>} */}
+        <div className={`${styles.input_group} ${formik.errors.password && formik.touched.password ? 'border-rose-600' : ''}`}>
           <input className={styles.input_text} type={`${show ? 'text' : 'password'}`} name='password' placeholder='Password' {...formik.getFieldProps('password')} />
           <span onClick={() => setShow(!show)} className='icon flex items-center px-4'><HiFingerPrint size={25} /></span>
         </div>
-        {formik.errors.password && formik.touched.password ? <span className='text-rose-500'>{formik.errors.password}</span> : <></>}
+        {/* {formik.errors.password && formik.touched.password ? <span className='text-rose-500'>{formik.errors.password}</span> : <></>} */}
 
         {/* login buttons */}
         <div className={styles.input_group}>
