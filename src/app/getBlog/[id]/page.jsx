@@ -81,7 +81,7 @@ const GetBlog = ({ params }) => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ username: session?.user?.name || user.username || 'Anonymous', text: commentText }),
+                body: JSON.stringify({ username: session?.user?.name || (user && user.username) || 'Anonymous', text: commentText }),
             });
 
             if (!response.ok) {
@@ -100,7 +100,7 @@ const GetBlog = ({ params }) => {
     return (
         <div className="bg-[#995959] h-full">
             <Navbar />
-            <div className="mt-4  mx-12 pt-4 bg-white p-10 rounded-md gap-5 mb-11">
+            <div className="mt-4 mx-4 md:mx-12 pt-4 bg-white p-5 md:p-10 rounded-md gap-5 mb-11">
                 <div className="flex flex-col gap-4">
                     <div className="relative w-full border-2 p-2 rounded-2xl">
                         <img className="w-full rounded-2xl" src={thumbnail} alt="" />
@@ -117,7 +117,7 @@ const GetBlog = ({ params }) => {
                     <div className="bg-white rounded-lg shadow-md mb-5 overflow-hidden p-2 w-full my-10">
                         <div className="flex flex-row items-center">
                             <img className="w-[60px]" src="https://static.vecteezy.com/system/resources/previews/019/879/186/original/user-icon-on-transparent-background-free-png.png" alt="" />
-                            <p className="font-bold text-xl">{session?.user?.name || user.username || 'Anonymous'}</p>
+                            <p className="font-bold text-xl">{session?.user?.name || (user && user.username) || 'Anonymous'}</p>
                         </div>
                         <textarea
                             type="text"
@@ -139,14 +139,14 @@ const GetBlog = ({ params }) => {
                     {comments.map((comment, index) => (
                         <div key={index} className="flex flex-row items-center justify-start bg-transparent rounded-full shadow-inner h-18 my-2 p-[20px] resize-none w-full border border-gray-200">
                             <div>
-                                <img className="w-[75px]" src="https://static.vecteezy.com/system/resources/previews/019/879/186/original/user-icon-on-transparent-background-free-png.png" alt="" />
+                                <img className="w-[45px] md:[75px]" src="https://static.vecteezy.com/system/resources/previews/019/879/186/original/user-icon-on-transparent-background-free-png.png" alt="" />
                             </div>
                             <div>
                                 <div>
-                                    <p className="font-bold text-xl">{comment.username}</p>
+                                    <p className="font-bold text-md md:text-xl">{comment.username}</p>
                                 </div>
                                 <div>
-                                    <p className="text-lg">{comment.text}</p>
+                                    <p className="text-sm md:text-lg">{comment.text}</p>
                                 </div>
                             </div>
                         </div>

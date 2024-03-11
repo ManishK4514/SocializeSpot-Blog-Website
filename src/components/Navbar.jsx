@@ -93,31 +93,31 @@ export default function Navbar() {
             </div>
 
             {isMenuToggled && (
-                <div className="flex flex-col justify-start items-center fixed right-0 bottom-0 h-full w-24 bg-gray-900 ring-gray-300 ring-1 shadow-sm p-4 rounded-l-lg z-50 gap-10">
-                    <div className="text-white" onClick={() => {setIsMenuToggled(isMenuToggled => !isMenuToggled)}}>
+                <div className="flex flex-col justify-start items-center fixed right-0 bottom-0 h-full w-24 bg-white dark:bg-gray-900 ring-gray-300 dark:ring-gray-700 ring-1 shadow-sm p-4 rounded-l-lg z-50 gap-10">
+                    <div className="text-black dark:text-white" onClick={() => {setIsMenuToggled(isMenuToggled => !isMenuToggled)}}>
                         <IoCloseOutline className="w-[25px] h-[25px] mt-10 cursor-pointer" />
                     </div>
 
                     <div>
-                        <Link href={"/"} className={`block py-2 px-3 text-white rounded bg-transparent ${isHomePage ? 'text-blue-700 dark:text-blue-500' : ''} md:p-0`}>
+                        <Link href={"/"} className={`block py-2 px-3  hover:text-blue-700 rounded bg-transparent ${isHomePage ? 'text-blue-700 dark:text-blue-500' : 'text-black  dark:text-white'} md:p-0`}>
                             <AiFillHome className="w-[25px] h-[25px] cursor-pointer" />
                         </Link>
                     </div>
 
                     <div>
-                        <Link href={"/myBlogs"} className={`block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent hover:text-blue-700 md:p-0  ${isMyBlogPage ? 'text-blue-700 dark:text-blue-500' : 'dark:text-white'} dark:hover:bg-gray-700 dark:hover:text-white dark:hover:bg-transparent dark:border-gray-700`}>
+                        <Link href={"/myBlogs"} className={`block py-2 px-3 rounded hover:bg-gray-100 md:hover:bg-transparent hover:text-blue-700 md:p-0  ${isMyBlogPage ? 'text-blue-700 dark:text-blue-500' : 'text-black dark:text-white'} dark:hover:bg-gray-700 dark:hover:text-white dark:hover:bg-transparent dark:border-gray-700`}>
                             <MdOutlineMenuBook className="w-[25px] h-[25px] cursor-pointer" />
                         </Link>
                     </div>
 
                     <div>
-                        <Link href={"/addBlog"} className={`block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 hover:bg-transparent hover:text-blue-700 md:p-0  ${isWriteBlogPage ? 'text-blue-700 dark:text-blue-500' : 'dark:text-white'} dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white dark:hover:bg-transparent dark:border-gray-700`}>
+                        <Link href={"/addBlog"} className={`block py-2 px-3 rounded hover:bg-gray-100 hover:bg-transparent hover:text-blue-700 md:p-0  ${isWriteBlogPage ? 'text-blue-700 dark:text-blue-500' : 'text-black dark:text-white '} hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:bg-transparent dark:border-gray-700`}>
                             <TfiWrite className="w-[25px] h-[25px] cursor-pointer" />
                         </Link>
                     </div>
 
                     <div>
-                        <button onClick={() => { signOut() }} className={`block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0  md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}>
+                        <button onClick={() => { signOut() }} className={`block py-2 px-3 text-black dark:text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0  md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}>
                             <HiOutlineLogout className="w-[25px] h-[25px] cursor-pointer" />
                         </button>
                     </div>
