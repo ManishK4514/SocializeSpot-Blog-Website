@@ -117,7 +117,7 @@ const GetBlog = ({ params }) => {
                     <div className="bg-white rounded-lg shadow-md mb-5 overflow-hidden p-2 w-full my-10">
                         <div className="flex flex-row items-center">
                             <img className="w-[60px]" src="https://static.vecteezy.com/system/resources/previews/019/879/186/original/user-icon-on-transparent-background-free-png.png" alt="" />
-                            <p className="font-bold text-xl">Manish Kumar</p>
+                            <p className="font-bold text-xl">{session?.user?.name || user.username || 'Anonymous'}</p>
                         </div>
                         <textarea
                             type="text"

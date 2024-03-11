@@ -5,6 +5,10 @@ import { usePathname } from "next/router";
 import { useSession, signOut } from "next-auth/react";
 import { redirect } from "next/navigation";
 import { useRouter } from "next/router";
+import { AiFillHome } from "react-icons/ai";
+import { TfiWrite } from "react-icons/tfi";
+import { MdOutlineMenuBook } from "react-icons/md";
+import { IoCloseOutline } from "react-icons/io5";
 
 export default function Navbar() {
     const { data: session } = useSession();
@@ -17,11 +21,12 @@ export default function Navbar() {
         setIsMyBlogPage(newPathname === '/myBlogs');
         setIsWriteBlogPage(newPathname === '/addBlog');
     }, []);
-  
+
 
     const [isHomePage, setIsHomePage] = useState('/' === pathname);
     const [isMyBlogPage, setIsMyBlogPage] = useState('/myBlogs' === pathname);
     const [isWriteBlogPage, setIsWriteBlogPage] = useState('/addBlog' === pathname);
+    const [isMenuToggled, setIsMenuToggled] = useState(false);
 
     useEffect(() => {
         if (!session) {
@@ -52,7 +57,7 @@ export default function Navbar() {
                         </div>
                         <input type="text" id="search-navbar" className="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search..." />
                     </div>
-                    <button data-collapse-toggle="navbar-search" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-search" aria-expanded="false">
+                    <button onClick={() => { setIsMenuToggled(isMenuToggled => !isMenuToggled) }} data-collapse-toggle="navbar-search" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-search" aria-expanded="false">
                         <span className="sr-only">Open main menu</span>
                         <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
                             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15" />
@@ -86,6 +91,38 @@ export default function Navbar() {
                     </ul>
                 </div>
             </div>
+
+            {isMenuToggled && (
+                <div className="flex flex-col justify-start items-center fixed right-0 bottom-0 h-full w-24 bg-gray-900 ring-gray-300 ring-1 shadow-sm p-4 rounded-l-lg z-50 gap-10">
+                    <div className="text-white" onClick={() => {setIsMenuToggled(isMenuToggled => !isMenuToggled)}}>
+                        <IoCloseOutline className="w-[25px] h-[25px] mt-10 cursor-pointer" />
+                    </div>
+
+                    <div>
+                        <Link href={"/"} className={`block py-2 px-3 text-white rounded bg-transparent ${isHomePage ? 'text-blue-700 dark:text-blue-500' : ''} md:p-0`}>
+                            <AiFillHome className="w-[25px] h-[25px] cursor-pointer" />
+                        </Link>
+                    </div>
+
+                    <div>
+                        <Link href={"/myBlogs"} className={`block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent hover:text-blue-700 md:p-0  ${isMyBlogPage ? 'text-blue-700 dark:text-blue-500' : 'dark:text-white'} dark:hover:bg-gray-700 dark:hover:text-white dark:hover:bg-transparent dark:border-gray-700`}>
+                            <MdOutlineMenuBook className="w-[25px] h-[25px] cursor-pointer" />
+                        </Link>
+                    </div>
+
+                    <div>
+                        <Link href={"/addBlog"} className={`block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 hover:bg-transparent hover:text-blue-700 md:p-0  ${isWriteBlogPage ? 'text-blue-700 dark:text-blue-500' : 'dark:text-white'} dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white dark:hover:bg-transparent dark:border-gray-700`}>
+                            <TfiWrite className="w-[25px] h-[25px] cursor-pointer" />
+                        </Link>
+                    </div>
+
+                    <div>
+                        <button onClick={() => { signOut() }} className={`block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0  md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}>
+                            <HiOutlineLogout className="w-[25px] h-[25px] cursor-pointer" />
+                        </button>
+                    </div>
+                </div>
+            )}
         </nav>
     )
 }
