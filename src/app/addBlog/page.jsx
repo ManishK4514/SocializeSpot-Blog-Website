@@ -76,7 +76,7 @@ export default function AddTodo() {
     return (
         <div className="bg-[#995959] h-screen">
             <Navbar />
-            <div className="mt-4  mx-12 pt-4">
+            <div className="mt-4 mx-7  md:mx-12 pt-4 pb-8">
                 <form onSubmit={handleSubmit} className="flex flex-col gap-3">
                     <input
                         onChange={(e) => setTitle(e.target.value)}
