@@ -28,11 +28,22 @@ export default function Navbar() {
     const [isWriteBlogPage, setIsWriteBlogPage] = useState('/addBlog' === pathname);
     const [isMenuToggled, setIsMenuToggled] = useState(false);
 
+    const [isRedirecting, setIsRedirecting] = useState(false);
+
     useEffect(() => {
-        if (!session) {
-            redirect("/login");
-        }
+        let timeoutId = setTimeout(() => {
+            if (!session) {
+                setIsRedirecting(true);
+            }
+        }, 1000);
+
+        return () => clearTimeout(timeoutId);
     }, [session]);
+
+    if (isRedirecting) {
+        redirect("/login");
+        return null;
+    }
 
     return (
         <nav className="bg-white border-gray-200 dark:bg-gray-900">

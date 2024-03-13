@@ -12,12 +12,6 @@ export default function EditBlogForm({ id, title, thumbnail, content }) {
     const [newThumbnail, setNewThumbnail] = useState(thumbnail);
     const editorRef = useRef(null);
 
-    useEffect(() => {
-        if (!session) {
-            redirect("/login");
-        }
-    }, [session]);
-
     const handleThumbnailChange = (e) => {
         const file = e.target.files[0];
         const reader = new FileReader();

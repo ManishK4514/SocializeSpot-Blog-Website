@@ -36,7 +36,7 @@ const EditTodo = ({ params }) => {
     return (
         <div className="bg-[#995959] h-screen">
             <Navbar />
-            <div className="mt-4  mx-12 pt-4">
+            <div className="mt-4  mx-7 md:mx-12 pt-4 pb-8">
                 <EditBlogForm id={id} title={title} thumbnail={thumbnail} content={content} />
             </div>
         </div>

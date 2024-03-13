@@ -14,12 +14,6 @@ export default function AddTodo() {
     const [thumbnail, setThumbnail] = useState(null);
     const router = useRouter();
 
-    useEffect(() => {
-        if (!session) {
-            redirect("/login");
-        }
-    }, [session]);
-
     const handleThumbnailChange = (e) => {
         const file = e.target.files[0];
         const reader = new FileReader();
@@ -89,7 +83,7 @@ export default function AddTodo() {
                     <input type="file" accept="image/*" onChange={handleThumbnailChange} className="bg-white border border-slate-500 px-8 py-2" />
 
                     <Editor
-                        apiKey='g5oq0crxkw9oh4ad42r2c6e5yguwsg8ko0dass88oxi92rrx'
+                        apiKey='bzz9rqo5vthy2kl0nzr7xgfedv90tl6mrfjcz990u31t7xrn'
                         onInit={(evt, editor) => editorRef.current = editor}
                         initialValue="<p>This is the initial content of the editor.</p>"
                         init={{

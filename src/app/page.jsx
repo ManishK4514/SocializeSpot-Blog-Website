@@ -12,12 +12,6 @@ import Footer from "@/components/Footer";
 export default function Home() {
   const { data: session } = useSession();
 
-  useEffect(() => {
-    if (!session) {
-      redirect("/login");
-    }
-  }, [session]);
-
   // function handleSignOut() {
   //   signOut();
   // }

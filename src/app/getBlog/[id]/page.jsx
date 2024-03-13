@@ -56,13 +56,13 @@ const GetBlog = ({ params }) => {
             setBlog(data.blog);
         };
 
-        if(!blog) fetchData();
+        if (!blog) fetchData();
 
         const fetchUserData = async () => {
             const data = await getUserById(session?.user?.email);
             setUser(data);
         };
-        
+
         fetchUserData();
     }, [id]);
 
@@ -137,13 +137,13 @@ const GetBlog = ({ params }) => {
                     </div>
 
                     {comments.map((comment, index) => (
-                        <div key={index} className="flex flex-row items-center justify-start bg-transparent rounded-full shadow-inner h-18 my-2 p-[20px] resize-none w-full border border-gray-200">
-                            <div>
-                                <img className="w-[45px] md:[75px]" src="https://static.vecteezy.com/system/resources/previews/019/879/186/original/user-icon-on-transparent-background-free-png.png" alt="" />
+                        <div key={index} className="flex flex-row items-start justify-start bg-transparent rounded-full h-full my-2 resize-none w-full">
+                            <div className="flex mt-2 min-w-50px">
+                                <img className="w-[45px] md:w-[55px] md:[85px]" src="https://static.vecteezy.com/system/resources/previews/019/879/186/original/user-icon-on-transparent-background-free-png.png" alt="" />
                             </div>
-                            <div>
+                            <div className="border border-gray-200 p-3 rounded-r-xl rounded-b-xl bg-gray-100 w-11/12">
                                 <div>
-                                    <p className="font-bold text-md md:text-xl">{comment.username}</p>
+                                    <p className="font-bold text-md md:text-xl text-gray-700">{comment.username}</p>
                                 </div>
                                 <div>
                                     <p className="text-sm md:text-lg">{comment.text}</p>

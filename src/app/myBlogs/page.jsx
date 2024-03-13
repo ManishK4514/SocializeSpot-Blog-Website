@@ -10,16 +10,10 @@ import Navbar from "@/components/Navbar";
 export default function MyBlogs() {
   const { data: session } = useSession();
 
-  useEffect(() => {
-    if (!session) {
-      redirect("/login");
-    }
-  }, [session]);
-
   return (
     <div className="bg-[#995959] h-full">
       <Navbar />
-      <div className="mt-4 mx-12 pt-4">
+      <div className="mt-4 mx-12 py-4">
         <MyBlogList email={session?.user?.email} />
       </div>
     </div>
