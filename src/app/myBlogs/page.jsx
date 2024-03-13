@@ -13,7 +13,7 @@ export default function MyBlogs() {
   return (
     <div className="bg-[#995959] h-full">
       <Navbar />
-      <div className="mt-4 mx-12 py-4">
+      <div className="mt-4 px-7 md:px-12 py-4">
         <MyBlogList email={session?.user?.email} />
       </div>
     </div>
