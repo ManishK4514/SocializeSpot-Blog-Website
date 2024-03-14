@@ -5,13 +5,13 @@ import { NextResponse } from "next/server";
 export async function POST(request) {
     const {email, title, thumbnail, content} = await request.json();
     await connectMongoDB();
-    await Blog.create({email, title, thumbnail, content, comments: [{}]});
+    await Blog.create({email, title, thumbnail, content, comments: []});
     return NextResponse.json({message: "Blog Created!"}, {status: 201});
 }
 
 export async function GET() {
     await connectMongoDB();
-    const blogs = await Blog.find();
+    const blogs = await Blog.find().sort({ createdAt: -1 });
     return NextResponse.json(blogs);
 }
 

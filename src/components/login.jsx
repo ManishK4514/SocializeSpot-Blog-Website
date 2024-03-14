@@ -34,7 +34,11 @@ const Login = () => {
       callbackUrl: "/"
     })
 
-    if (status.ok) router.push(status.url);
+    if (status.ok) {
+      router.push(status.url);
+    } else {
+      alert("Username or Password doesn't match...!");
+    }
   }
 
   // Google Handler function
