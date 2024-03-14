@@ -75,12 +75,12 @@ export default function AddTodo() {
                     <input
                         onChange={(e) => setTitle(e.target.value)}
                         value={title}
-                        input className="border border-slate-500 px-8 py-2"
+                        input className="border border-slate-500 px-8 py-3 rounded-xl"
                         type="text"
                         placeholder="Todo Title"
                     />
 
-                    <input type="file" accept="image/*" onChange={handleThumbnailChange} className="bg-white border border-slate-500 px-8 py-2" />
+                    <input type="file" accept="image/*" onChange={handleThumbnailChange} className="bg-white border border-slate-500 px-8 py-3 rounded-xl" />
 
                     <Editor
                         apiKey='bzz9rqo5vthy2kl0nzr7xgfedv90tl6mrfjcz990u31t7xrn'

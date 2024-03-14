@@ -6,9 +6,9 @@ import { useSession, signOut } from "next-auth/react";
 import { redirect } from "next/navigation";
 import { useRouter } from "next/router";
 import { AiFillHome } from "react-icons/ai";
-import { TfiWrite } from "react-icons/tfi";
-import { MdOutlineMenuBook } from "react-icons/md";
 import { IoCloseOutline } from "react-icons/io5";
+import { FaPencilAlt } from "react-icons/fa";
+import { ImBooks } from "react-icons/im";
 
 export default function Navbar() {
     const { data: session } = useSession();
@@ -117,13 +117,13 @@ export default function Navbar() {
 
                     <div>
                         <Link href={"/myBlogs"} className={`block py-2 px-3 rounded hover:bg-gray-100 md:hover:bg-transparent hover:text-blue-700 md:p-0  ${isMyBlogPage ? 'text-blue-700 dark:text-blue-500' : 'text-black dark:text-white'} dark:hover:bg-gray-700 dark:hover:text-white dark:hover:bg-transparent dark:border-gray-700`}>
-                            <MdOutlineMenuBook className="w-[25px] h-[25px] cursor-pointer" />
+                            <ImBooks className="w-[25px] h-[25px] cursor-pointer" />
                         </Link>
                     </div>
 
                     <div>
                         <Link href={"/addBlog"} className={`block py-2 px-3 rounded hover:bg-gray-100 hover:bg-transparent hover:text-blue-700 md:p-0  ${isWriteBlogPage ? 'text-blue-700 dark:text-blue-500' : 'text-black dark:text-white '} hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:bg-transparent dark:border-gray-700`}>
-                            <TfiWrite className="w-[25px] h-[25px] cursor-pointer" />
+                            <FaPencilAlt className="w-[25px] h-[25px] cursor-pointer" />
                         </Link>
                     </div>
 

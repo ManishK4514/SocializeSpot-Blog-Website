@@ -91,7 +91,7 @@ const Login = () => {
 
       {/* buttom */}
       <p className='text-gray-400'>
-        don&apos;t have an account yet? <Link className='text-blue-500' href={'/register'}>
+        Don&apos;t have an account yet? <Link className='text-blue-500' href={'/register'}>
           Sign Up
         </Link>
       </p>

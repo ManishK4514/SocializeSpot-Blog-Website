@@ -53,12 +53,12 @@ export default function EditBlogForm({ id, title, thumbnail, content }) {
             <input
                 onChange={(e) => { setNewTitle(e.target.value) }}
                 value={newTitle}
-                className="border border-slate-500 px-8 py-2"
+                className="border border-slate-500 px-8 py-3 rounded-xl"
                 type="text"
                 placeholder="Todo Title"
             />
 
-            <input type="file" accept="image/*" onChange={handleThumbnailChange} className="bg-white border border-slate-500 px-8 py-2" />
+            <input type="file" accept="image/*" onChange={handleThumbnailChange} className="bg-white border border-slate-500 px-8 py-3 rounded-xl" />
 
             <Editor
                 apiKey='g5oq0crxkw9oh4ad42r2c6e5yguwsg8ko0dass88oxi92rrx'
