@@ -30,7 +30,7 @@ export function register_validate(values) {
     if (!values.username) {
         errors.username = "Required";
     } else if(values.username.includes(" ")) {
-        errors.username = "Invalid username";
+        errors.username = "username should not contains spaces";
     }
 
     // validation for email addresses
