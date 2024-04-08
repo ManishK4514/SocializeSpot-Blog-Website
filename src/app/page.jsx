@@ -22,15 +22,6 @@ export default function Home() {
   //   </div>
   // )
 
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://client.crisp.chat/l.js";
-    script.async = true;
-    window.$crisp = [];
-    window.CRISP_WEBSITE_ID = "7995cb10-2eec-4db5-b7ab-84fb0e75b7cb";
-    document.getElementsByTagName("head")[0].appendChild(script);
-  }, []);
-
   return (
     <div className="bg-[#995959] h-screen mb-11">
       <Navbar />
