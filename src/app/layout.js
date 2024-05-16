@@ -18,7 +18,6 @@ export default function RootLayout({ children }) {
     return (
         <html lang="en">
             <body className={`${inter.className} bg-custom-color`}>
-                <CrispWithNoSSR />
                 <AuthProvider>{children}</AuthProvider>
             </body>
         </html>
